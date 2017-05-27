@@ -1,0 +1,52 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <link rel="stylesheet" href="">
+            {{fullmap.js}}
+            <title>Flask Google Maps Example</title>
+            {{"decoupled-map"|googlemap_js(37.4419, -122.1419, varname="decoupledmap", markers=[(37.4419, -122.1419)])}}
+            {{mymap.js}}
+</head>
+    <body>
+        {% if forecast %}
+        <div style="height:100vh;">
+            <h1 class="center-align">{{ forecast }}</h1><br />
+            {{ fullmap.html }}
+          </div>
+          <div>
+            <p class="center-align flow-text">
+                back to <a href="/">home</a><br />
+                <a href={{ url_for("about") }}>about</a>
+            </p>
+        </div>
+        {% else %}
+        <div style="height:100vh;">
+            <h1 class="center-align">Hello! What's your address?</h1><br />
+            <div class="row">
+                <form class="col s12" action="/">
+                    <div class="row">
+                        <div class="input-field col s6 offset-s3">
+                            <input type="text" id="address_input" class="validate" name="address">
+                            <label for="address_input">Your Address:</label>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="input-field col s6 offset-s3">
+                            <input type="submit" value="Submit" id="first_name" class="btn"/>
+                        </div>
+                    </div><br />
+                </form>
+            </div><br />
+            <p class="center-align flow-text">
+                <a href={{ url_for("about") }} class="center-align">about</a>
+            </p>
+        </div>
+        {% endif %}
+        <!-- javascript -->
+        <script src="https://use.fontawesome.com/8f6878caa0.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script></head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    </body>
+</html>
